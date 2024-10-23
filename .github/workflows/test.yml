@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+env:
+  REPO_URL: https://github.com/Davrpob0/topicosAvanzados-Test.git
+  WORKING_DIR: ./topicosAvanzados-Test
+
 jobs:
   run-tests:
     runs-on: ubuntu-latest
