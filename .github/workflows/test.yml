@@ -1,4 +1,4 @@
-name: Run Automated Tests
+name: Run Tests
 
 on:
   push:
@@ -8,13 +8,10 @@ on:
     branches:
       - main
 
-env:
-  REPO_URL: https://github.com/Davrpob0/topicosAvanzados-Test.git
-  WORKING_DIR: ./topicosAvanzados-Test
-
 jobs:
   run-tests:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Flask app repo
         uses: actions/checkout@v3
@@ -47,7 +44,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd topicosAvanzados-Test
+          cd todoism-eafit-tests
           npm ci
 
       - name: Install Playwright Browsers
@@ -55,13 +52,13 @@ jobs:
 
       - name: Run Playwright tests
         run: |
-          cd topicosAvanzados-Test
-          npx playwright test
+          cd todoism-eafit-tests
+          npx playwright test todolist.spec.ts
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: topicosAvanzados-Test
-          path: topicosAvanzados-Test/playwright-report/
+          name: playwright-report
+          path: todoism-eafit-tests/playwright-report/
           retention-days: 30
