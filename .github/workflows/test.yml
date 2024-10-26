@@ -61,4 +61,4 @@ jobs:
         with:
           name: playwright-report
           path: topicosAvanzados-Test/playwright-report/
-          retention-days: 30
+          retention-days: 35
